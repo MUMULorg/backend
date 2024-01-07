@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @EnableAsync
 public class MailService {
+
     private final JavaMailSender mailSender;
     private static final String FROM_ADDRESS = "dev.choiey@gmail.com";
 

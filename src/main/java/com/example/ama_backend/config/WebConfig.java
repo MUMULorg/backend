@@ -14,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:3000")
                 .allowedOrigins("https://mumul.space")
                 .allowedOrigins("https://api.mumul.space")
+                .allowedOrigins("http://mumul.eba-5uhmqmsr.us-west-2.elasticbeanstalk.com/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)

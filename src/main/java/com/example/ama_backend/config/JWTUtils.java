@@ -64,6 +64,8 @@ public class JWTUtils {
             List<GrantedAuthority> authorities= AuthorityUtils.commaSeparatedStringToAuthorityList(claims.get("role", String.class));
             return new UsernamePasswordAuthenticationToken(claims.getSubject(), token, authorities); // 인증 객체를 생성하여 반환한다.
         }catch(JwtException | IllegalArgumentException ignored){
+            // 예외 발생 시 로그로 출력
+            ignored.printStackTrace();
             return  null;
         }
     }
