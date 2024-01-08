@@ -24,7 +24,7 @@ spring:
     url: jdbc:mysql://awseb-e-v5r8k4zjpa-stack-awsebrdsdatabase-ekujyjbp3bxm.cgfwvheppmvh.us-west-2.rds.amazonaws.com:3306/ebdb
     username: ebroot
     password: a7344655
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:
