@@ -48,18 +48,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final JWTUtils jwtUtils;
     private final GoogleIdTokenVerifier verifier;
-    @Autowired
-    private SpaceRepository spaceRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    private QAService qaService;
-    @Autowired
-    private AnswerRepository answerRepository;
-    @Autowired
-    private FollowRepository followRepository;
-    @Autowired
-    private FollowService followService;
+    private final SpaceRepository spaceRepository;
+    private final QuestionRepository questionRepository;
+    private final QAService qaService;
+    private final AnswerRepository answerRepository;
+    private final FollowRepository followRepository;
+    private final FollowService followService;
     private static final String CLIENT_ID = "666974459730-6bv37t0c044nns1tnhd8rrosnspbq613.apps.googleusercontent.com";
     @Value("${oauth2.google.token-url}")
     private String GOOGLE_TOKEN_URL;
@@ -75,7 +69,7 @@ public class UserService {
     private String KAKAO_REDIRECT_URL;
 
     // UserService 클래스의 생성자이다. 필요한 의존성을 주입받는다.
-    public UserService(@Value("${app.googleClientId}") String clientId, UserRepository userRepository, JWTUtils jwtUtils) {
+    public UserService(@Value("${app.googleClientId}") String clientId, UserRepository userRepository, JWTUtils jwtUtils, SpaceRepository spaceRepository, QuestionRepository questionRepository, QAService qaService, AnswerRepository answerRepository, FollowRepository followRepository, FollowService followService) {
         this.userRepository = userRepository;
         this.jwtUtils = jwtUtils;
         NetHttpTransport transport=new NetHttpTransport();
@@ -85,6 +79,12 @@ public class UserService {
         this.verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
                 .setAudience(Collections.singletonList(clientId))
                 .build();
+        this.spaceRepository = spaceRepository;
+        this.questionRepository = questionRepository;
+        this.qaService = qaService;
+        this.answerRepository = answerRepository;
+        this.followRepository = followRepository;
+        this.followService = followService;
     }
 
     // 지정된 ID로 유저를 조회한다. ID에 해당하는 유저가 없을경우 NULL 반환한다

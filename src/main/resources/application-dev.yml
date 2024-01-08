@@ -19,21 +19,20 @@ app:
 #    password: 4701
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 
-
 spring:
+  datasource:
+    url: jdbc:mysql://awseb-e-v5r8k4zjpa-stack-awsebrdsdatabase-ekujyjbp3bxm.cgfwvheppmvh.us-west-2.rds.amazonaws.com:3306/ebdb
+    username: ebroot
+    password: a7344655
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:
         format_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       generate-ddl: true
     show-sql: true
-  datasource:
-    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}
-    username: ${rds.username}
-    password: ${rds.password}
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 logging:
   level:
@@ -43,6 +42,30 @@ logging:
         type:
           descriptor:
             sql: trace
+
+#spring:
+#  jpa:
+#    properties:
+#      hibernate:
+#        format_sql: true
+#    hibernate:
+#      ddl-auto: update
+#      generate-ddl: true
+#    show-sql: true
+#  datasource:
+#    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}
+#    username: ${rds.username}
+#    password: ${rds.password}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: debug
+#        type:
+#          descriptor:
+#            sql: trace
 
 
   jpa:
