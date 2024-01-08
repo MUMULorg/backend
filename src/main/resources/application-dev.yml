@@ -21,7 +21,7 @@ app:
 
 spring:
   datasource:
-    url: jdbc:mysql://awseb-e-v5r8k4zjpa-stack-awsebrdsdatabase-ekujyjbp3bxm.cgfwvheppmvh.us-west-2.rds.amazonaws.com:3306/ebdb
+    url: jdbc:mysql://awseb-e-v5r8k4zjpa-stack-awsebrdsdatabase-ekujyjbp3bxm.cgfwvheppmvh.us-west-2.rds.amazonaws.com:3306/ebdb?useSSL=false
     username: ebroot
     password: a7344655
 #    driver-class-name: com.mysql.cj.jdbc.Driver
