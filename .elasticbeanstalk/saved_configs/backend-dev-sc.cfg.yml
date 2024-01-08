@@ -1,0 +1,45 @@
+AWSConfigurationTemplateVersion: 1.1.0.0
+EnvironmentConfigurationMetadata:
+  DateCreated: '1704667367000'
+  DateModified: '1704668043407'
+  Description: Configuration created from the EB CLI using "eb config save".
+EnvironmentTier:
+  Name: WebServer
+  Type: Standard
+OptionSettings:
+  aws:autoscaling:launchconfiguration:
+    EC2KeyName: aws-eb
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: true
+    RollingUpdateType: Health
+  aws:elasticbeanstalk:application:environment:
+    NGINX_PORT: '80'
+  aws:elasticbeanstalk:command:
+    BatchSize: '30'
+    BatchSizeType: Percentage
+  aws:elasticbeanstalk:environment:
+    LoadBalancerType: application
+    ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:healthreporting:system:
+    ConfigDocument:
+      CloudWatchMetrics:
+        Environment: {}
+        Instance: {}
+      Rules:
+        Environment:
+          Application:
+            ApplicationRequests4xx:
+              Enabled: true
+          ELB:
+            ELBRequests4xx:
+              Enabled: true
+      Version: 1
+    SystemType: enhanced
+  aws:elb:loadbalancer:
+    CrossZone: true
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:us-west-2::platform/Corretto 17 running on
+    64bit Amazon Linux 2023/4.1.2

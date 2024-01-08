@@ -1,0 +1,48 @@
+oauth2:
+  google:
+    client-id: 666974459730-6bv37t0c044nns1tnhd8rrosnspbq613.apps.googleusercontent.com
+    client-secret: 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
+    redirect-uri: http://localhost:3000/login
+    token-url: https://oauth2.googleapis.com/token
+  kakao:
+    client-id: aef338ad0a5650a845dd1ce3f5ff8571
+    redirect-uri: http://localhost:3000/login/kakao
+
+app:
+  jwtSecret: Aslkdjalwidjaslmdnmcnvxleflisdjflskejflidsjflskjefasdsadsadasdqweqewqe123asdsadzxczcadw
+  googleClientId: "666974459730-6bv37t0c044nns1tnhd8rrosnspbq613.apps.googleusercontent.com"
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/amaDatabase?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 4701
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      show-sql: true
+      properties:
+        hibernate.format_sql: true
+        dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+
+    logging:
+      level:
+        org.hibernate.SQL: debug
+
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: dev.choiey
+      password: hlxxqflntgzjzxpw
+      properties:
+        mail:
+          smtp:
+            auth: true
+            timeout: 5000
+            starttls:
+              enable: true
+

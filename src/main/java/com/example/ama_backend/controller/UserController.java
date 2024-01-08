@@ -26,7 +26,7 @@ import java.util.Objects;
 import static com.example.ama_backend.dto.UserUpdateRequestDto.convertToDto;
 
 @RestController
-//@CrossOrigin(origins = "https://mumul.space")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     @Autowired
     private QAService qaService;

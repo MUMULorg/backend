@@ -37,16 +37,16 @@ out/
 
 ### VS Code ###
 .vscode/
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
-# dev, prod yml Files
-src/main/resources/application-dev.yml
-src/main/resources/application-prod.yml
-src/main/resources/application.yml
-
-#mail SecurityConfig
-src/main/java/com/example/ama_backend/config/mail/MailConfig.java
+#
+## Elastic Beanstalk Files
+#.elasticbeanstalk/*
+#!.elasticbeanstalk/*.cfg.yml
+#!.elasticbeanstalk/*.global.yml
+#
+## dev, prod yml Files
+#src/main/resources/application-dev.yml
+#src/main/resources/application-prod.yml
+#src/main/resources/application.yml
+#
+##mail SecurityConfig
+#src/main/java/com/example/ama_backend/config/mail/MailConfig.java
