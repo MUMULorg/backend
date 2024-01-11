@@ -16,7 +16,7 @@ public class RDSController {
 
     @PostConstruct
     public void postConstruct() {
-        System.out.println("rds.hostname: " + rdsHostname);
-        System.out.println("rds.port: " + rdsPort);
+//        System.out.println("rds.hostname: " + rdsHostname);
+//        System.out.println("rds.port: " + rdsPort);
     }
 }
