@@ -12,13 +12,17 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
-                .allowedOrigins("https://54.180.80.63:3000/")
-                .allowedOrigins("https://54.180.80.63")
-                .allowedOrigins("http://54.180.80.63:3000/")
+
+                .allowedOrigins("http://54.180.80.63:3000")
                 .allowedOrigins("http://54.180.80.63")
-                .allowedOrigins("http://13.124.15.169/")
+
+                .allowedOrigins("http://13.124.15.169") // fix: "/" 끝에 지우기
+
                 .allowedOrigins("https://mumul.site")
                 .allowedOrigins("http://mumul.site")
+
+                .allowedOriginPatterns("*") // 500 internal server error 해결
+
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(false)
