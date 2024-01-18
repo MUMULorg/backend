@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("https://54.180.80.63")
                 .allowedOrigins("http://54.180.80.63:3000/")
                 .allowedOrigins("http://54.180.80.63")
+                .allowedOrigins("http://13.124.15.169/")
                 .allowedOrigins("https://mumul.site")
                 .allowedOrigins("http://mumul.site")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
