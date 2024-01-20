@@ -1,11 +1,11 @@
 oauth2:
   google:
-    client-id: 666974459730-6bv37t0c044nns1tnhd8rrosnspbq613.apps.googleusercontent.com
-    client-secret: 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
+    client-id: 79338396351-u2rumgrcltjcvrcag4p3p5njijrm0e1g.apps.googleusercontent.com
+    client-secret: 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
     redirect-uri: https://mumul.site/login
     token-url: https://oauth2.googleapis.com/token
   kakao:
-    client-id: aef338ad0a5650a845dd1ce3f5ff8571
+    client-id: d2c26f36c69325cd253b8d0b68802286
     redirect-uri: https://mumul.site/login/kakao
 
 app:
