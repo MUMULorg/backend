@@ -51,3 +51,6 @@ src/main/resources/application.yml
 #mail SecurityConfig
 src/main/java/com/example/ama_backend/config/mail/MailConfig.java
 
+#application-dev.yml
+src/main/resources/
+
