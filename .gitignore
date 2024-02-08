@@ -52,5 +52,5 @@ src/main/resources/application.yml
 src/main/java/com/example/ama_backend/config/mail/MailConfig.java
 
 #application-dev.yml
-src/main/resources/
+src/main/resources/*.yml
 
