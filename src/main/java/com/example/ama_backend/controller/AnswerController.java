@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/spaces")
 @Slf4j
+@CrossOrigin(origins = "https://mumul.site")
 public class AnswerController {
     @Autowired
     private QAService qaService;
@@ -46,6 +47,7 @@ public class AnswerController {
 
     // 답변 등록 API
     @PostMapping("/{spaceId}/{questionId}/answer/create")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> createAnswer(@PathVariable Long questionId, @PathVariable Long spaceId, @RequestBody AnswerDTO answerDTO) {
         UserEntity spaceUser = userRepository.findById(spaceId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
@@ -101,11 +103,15 @@ public class AnswerController {
     // 1. 이동한 스페이스에서(내 스페이스여야 할 필요 없음)
     // 2. 내가 작성한 답변이여야 함
     @DeleteMapping("{spaceId}/{answerId}/{userId}/answer/delete")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> deleteAnswer(@PathVariable Long userId, @PathVariable Long answerId, @PathVariable Long spaceId) {
         try {
             org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
+            System.out.println("spaceId는 "+ spaceId+ "answerId는 "+ answerId+ "userId는 "+ userId);
+
             if (testAuthentication == null || testAuthentication.getPrincipal() == "anonymousUser") {
+                System.out.println("👽👽👽👽👽👽👽👽👽👽👽👽 /********* 로그인 안해서 false return");
                 return ResponseEntity.ok().body(false);
             } else {
                 long luser = Long.valueOf((String) testAuthentication.getPrincipal());
@@ -116,6 +122,8 @@ public class AnswerController {
                         .orElseThrow(() -> new IllegalArgumentException("Invalid space id"));
 
                 qaService.deleteAnswer(answerId, currentUser.getId());
+
+                System.out.println("888888888888888888888888888888888888내가 작성한 답변을 삭제했습니다.88888888888888888888888888888888888888");
                 return ResponseEntity.ok().body("내가 작성한 답변을 삭제했습니다.");
             }
         } catch (Exception e) {

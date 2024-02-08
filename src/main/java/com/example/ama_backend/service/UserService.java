@@ -293,7 +293,7 @@ public class UserService {
         System.out.println("Compressed Image Size: " + compressedImageBytes.length + " bytes");
 
         user.setProfileByte(compressedImageBytes);
-        user.setPicture("http://3.37.158.206/picture/"+user.getId());
+        user.setPicture("https://api-mumul.site/picture/"+user.getId());
 
         userRepository.save(user);
     }

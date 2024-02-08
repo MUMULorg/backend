@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/spaces")
 @Slf4j
 @EnableAsync
+@CrossOrigin(origins = "https://mumul.site")
 public class QuestionController {
 
     @Autowired
@@ -46,6 +47,7 @@ public class QuestionController {
 
     // 질문 등록 API
     @PostMapping("/{spaceId}/question/create")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> createQuestion(@PathVariable Long spaceId, @RequestBody QuestionDTO questionDTO) {
         // 이동한 스페이스 엔터티
         SpaceEntity space = spaceRepository.findById(spaceId)
@@ -121,6 +123,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{spaceId}/received/get")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<ResponseDTO<QuestionDTO>> getReceivedQuestionWithPaging(@PathVariable Long spaceId, @RequestParam(name = "page", defaultValue = "0") int page,
                                                                                   @RequestParam(name = "size", defaultValue = "5") int size) {
         // 이동한 스페이스 엔터티
@@ -159,6 +162,7 @@ public class QuestionController {
 
     // 보낸 질문과 답변 조회 api
     @GetMapping("/{spaceId}/sent/get")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> getSentQuestion(@PathVariable Long spaceId, @RequestParam(name = "page", defaultValue = "0") int page,
                                              @RequestParam(name = "size", defaultValue = "5") int size) {
         // 이동한 스페이스 엔터티
@@ -264,6 +268,7 @@ public class QuestionController {
     // 남이 보낸 질문이라도 내 스페이스 내라면 삭제 가능
     // 이동한 스페이스에서 내가 보낸 질문이라면 삭제 가능
     @DeleteMapping("/{spaceId}/{questionId}/{userId}/question/delete")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> deleteQuestion(@PathVariable Long userId,@PathVariable Long spaceId, @PathVariable Long questionId) {
         try {
             org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();

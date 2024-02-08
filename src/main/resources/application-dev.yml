@@ -10,7 +10,7 @@ oauth2:
 
 app:
   jwtSecret: Aslkdjalwidjaslmdnmcnvxleflisdjflskejflidsjflskjefasdsadsadasdqweqewqe123asdsadzxczcadw
-  googleClientId: "666974459730-6bv37t0c044nns1tnhd8rrosnspbq613.apps.googleusercontent.com"
+  googleClientId: "79338396351-u2rumgrcltjcvrcag4p3p5njijrm0e1g.apps.googleusercontent.com"
 
 spring:
   datasource:
@@ -29,6 +29,17 @@ spring:
     show-sql: true
     open-in-view: false
 
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "https://mumul.site"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+
 
 
 logging:
@@ -39,6 +50,7 @@ logging:
         type:
           descriptor:
             sql: trace
+#      springframework: DEBUG
 
   jpa:
     hibernate:

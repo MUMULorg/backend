@@ -26,7 +26,7 @@ import java.util.Objects;
 import static com.example.ama_backend.dto.UserUpdateRequestDto.convertToDto;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://mumul.site")
 public class UserController {
     @Autowired
     private QAService qaService;
@@ -42,51 +42,55 @@ public class UserController {
     // Google OAuth를 통해 받은 ID 토큰으로 로그인을 처리하는 메소드이다.
 //    public ResponseEntity LoginWithGoogleOAuth2(@RequestParam("code") String accessCode, HttpServletResponse response) throws GeneralSecurityException, IOException {
     @GetMapping(value = "/v1/oauth/login/callback")
-    public ResponseEntity LoginWithGoogleOAuth2(@RequestParam("code") String accessCode, HttpServletResponse response) throws GeneralSecurityException, IOException {
-        System.out.println(accessCode);
+    @CrossOrigin(origins = "https://mumul.site")
+    public ResponseEntity<?> LoginWithGoogleOAuth2(@RequestParam("code") String accessCode, HttpServletResponse response) throws GeneralSecurityException, IOException {
+        System.out.println("access Code는 "+ accessCode);
         String idToken = userService.getGoogleAccessToken(accessCode);
 
         // IdTokenRequestDto 는 요청 바디에서 받아온 ID 토큰을 담고 있다.
         String authToken = userService.loginOAuthGoogle(idToken);
-        System.out.println(authToken);
+        System.out.println("authToken은 "+authToken);
 
-        response.addHeader("Access-Control-Allow-Origin", "*");
+//        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Authorization", authToken);
 
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(value = "/v1/oauth/login/kakao")
-    public ResponseEntity LoginWithKaKao(@RequestParam("code") String code, HttpServletResponse response) throws GeneralSecurityException, IOException {
-        System.out.println("kakao=====" + code);
+    @CrossOrigin(origins = "https://mumul.site")
+    public ResponseEntity<?> LoginWithKaKao(@RequestParam("code") String code, HttpServletResponse response) throws GeneralSecurityException, IOException {
+        System.out.println("=========================kakao=====================" + code);
         String accessToken = userService.getAccessToken(code);
 
         String authToken = userService.loginOauthKakao(accessToken);
         System.out.println(authToken);
 
-        response.addHeader("Access-Control-Allow-Origin", "*");
+//        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Authorization", authToken);
 
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/v1/oauth/user/info")
-    public ResponseEntity getUserInfo() {
+    @CrossOrigin(origins = "https://mumul.site")
+    public ResponseEntity<?> getUserInfo() {
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (testAuthentication == null || testAuthentication.getPrincipal() == "anonymousUser") {
             return ResponseEntity.ok().body(false);
         } else {
-            long luser = Long.valueOf((String) testAuthentication.getPrincipal());
+            long luser = Long.parseLong((String) testAuthentication.getPrincipal());
             UserEntity user = userService.getUser(luser);
 
-            if(user!=null) return ResponseEntity.ok().body(convertToDto(user));
+            if (user != null) return ResponseEntity.ok().body(convertToDto(user));
             else return ResponseEntity.ok().body(false);
         }
     }
 
 
     @PostMapping("/v1/oauth/logout")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
 
         // 클라이언트 측에 저장된 토큰을 무효화하고 삭제하기 위해 응답 헤더에 토큰을 제거하는 코드 추가
@@ -101,6 +105,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/picture/{spaceId}", produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE})
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> getProfileImg(@PathVariable Long spaceId) throws IOException {
         UserEntity user = userRepository.findById(spaceId).orElse(null);
 
@@ -113,6 +118,7 @@ public class UserController {
     }
 
     @PutMapping("/v1/oauth/user/update/{userId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> updateUser(@PathVariable Long userId, @RequestPart(value = "requestDto") UserUpdateRequestDto requestDto, @RequestPart(value = "imgFile", required = false) MultipartFile imgFile) throws Exception {
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -138,6 +144,7 @@ public class UserController {
     }
 
     @PutMapping("/v1/oauth/user/spaceStop/{userId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> alterStopSpace(@PathVariable Long userId, @RequestBody boolean stopSpace) {
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -162,6 +169,7 @@ public class UserController {
     }
 
     @PutMapping("/v1/oauth/user/alertSpace/{userId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> alterAlertSpace(@PathVariable Long userId, @RequestBody boolean alertSpace) {
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -180,6 +188,7 @@ public class UserController {
     }
 
     @DeleteMapping("/v1/oauth/user/secession/{userId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> userSecession(@PathVariable Long userId) {
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
 

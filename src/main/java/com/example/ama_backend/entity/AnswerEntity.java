@@ -40,7 +40,7 @@ public class AnswerEntity {
     private Boolean isPublic; //답변 공개 여부
 
     // @ManyToOne 어노테이션을 사용하여 QuestionEntity 클래스의 answers 프로퍼티와 매핑
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
     private QuestionEntity question; // QuestionEntity 객체를 참조
 

@@ -34,7 +34,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
     // 이 필터는 들어오는 요청을 가로채고, "AUTH-TOKEN" 쿠키에서 JWT 토큰을 확인한다.
     @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         System.out.println("=======================doFilterInternal===========================");
         String token = resolveToken(request);
         System.out.println("DoRequestFilter token: " + token);
@@ -49,6 +50,13 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             // 토큰이 null이거나 유효하지 않은 경우 인증 정보를 제거한다.
             SecurityContextHolder.clearContext();
         }
+
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS, PATCH");
+//        response.setHeader("Access-Control-Max-Age", "3600");
+//        response.setHeader("Access-Control-Allow-Headers",
+//                "Authorization, Origin, X-Requested-With, Content-Type, Content-Disposition, Accept");
+//        response.setHeader("Access-Control-Expose-Headers", "Content-Disposition, filename");
 
         // 필터 체인을 계속 진행하고 요청이 다음 필터나 대상 컨트롤러로 전달될 수 있도록 한다.
         // JWT 토큰을 확인하고, 인증된 사용자를 보다시피 보안 텍스트에 설정하여 애플리케이션에 추가적인 인가 확인을 수행하는 역할을 담당한다.

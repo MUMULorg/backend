@@ -18,6 +18,7 @@ import static com.example.ama_backend.dto.UserUpdateRequestDto.convertToDto;
 
 @Controller
 @RequestMapping("/spaces")
+@CrossOrigin(origins = "https://mumul.site")
 public class SpaceController {
     @Autowired
     private SpaceRepository spaceRepository;
@@ -31,8 +32,11 @@ public class SpaceController {
     private FollowService followService;
 
     @GetMapping("/{spaceId}")
-    public ResponseEntity getSpaceInfo(@PathVariable String spaceId) throws Exception {
+    @CrossOrigin(origins = "https://mumul.site")
+    public ResponseEntity<?> getSpaceInfo(@PathVariable String spaceId) throws Exception {
         try {
+            System.out.println("^^^^^^^^^^^^^^^^^^^^ spaceId : "+ spaceId+"^^^^^^^^^^^^^^^^^^");
+
             long id = Long.parseLong(spaceId); // 문자열을 long으로 변환
             Optional<SpaceEntity> spaceEntity = spaceRepository.findById(id);
 
@@ -41,6 +45,7 @@ public class SpaceController {
                 Optional<UserEntity> user = userRepository.findById(space.getUserId());
                 if(user.isPresent()) {
                     UserEntity spaceUser = user.get();
+                    System.out.println("^^^^^^^^^^^^^^^^^^ Space User : "+ convertToDto(spaceUser)+"^^^^^^^^^^^^^^^^^^^");
                     return ResponseEntity.ok().body(convertToDto(spaceUser));
                 } else {
                     return ResponseEntity.ok().body(false);

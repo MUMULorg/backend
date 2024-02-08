@@ -3,10 +3,12 @@ package com.example.ama_backend.controller;
 import com.google.api.client.util.Value;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/rds")
+@CrossOrigin(origins = "https://mumul.site")
 public class RDSController {
     @Value("${rds.hostname}")
     private String rdsHostname;

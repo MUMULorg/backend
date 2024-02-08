@@ -2,12 +2,17 @@ package com.example.ama_backend.config.auth;
 
 import com.example.ama_backend.config.JWTRequestFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity //스프링 시큐리티 설정들을 활성화시킴
 public class SecurityConfig {
@@ -23,7 +28,7 @@ public class SecurityConfig {
 // CORS 활성화
         http
             .cors()
-            .and()
+                .and()
             .csrf().disable()
 
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
@@ -50,4 +55,6 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
 }

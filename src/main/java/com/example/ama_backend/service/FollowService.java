@@ -2,6 +2,7 @@ package com.example.ama_backend.service;
 import com.example.ama_backend.entity.Follow;
 import com.example.ama_backend.entity.UserEntity;
 import com.example.ama_backend.persistence.FollowRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

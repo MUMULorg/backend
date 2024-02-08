@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ import java.util.List;
 import static com.example.ama_backend.dto.UserUpdateRequestDto.convertToDto;
 
 @Controller
+@CrossOrigin(origins = "https://mumul.site")
 public class FollowController {
     @Autowired
     private SpaceRepository spaceRepository;
@@ -42,6 +44,7 @@ public class FollowController {
 
     // 현재 로그인한 유저가 스페이스 유저 팔로우
     @PostMapping("/follow/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> follow(@PathVariable Long spaceId) {
         System.out.println("~~~~~~follow~~~~~~~");
         org.springframework.security.core.Authentication Authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -71,6 +74,7 @@ public class FollowController {
     }
     // 현재 로그인한 유저가 스페이스 유저 언팔로우
     @PostMapping("/unFollow/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> unFollow(@PathVariable Long spaceId) {
         System.out.println("~~~~~~unFollow~~~~~~");
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
@@ -100,6 +104,7 @@ public class FollowController {
 
     // 현재 로그인한 유저가 스페이스 주인유저를 팔로우했는지 아닌지 확인
     @GetMapping("/isFollow/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> isFollow(@PathVariable Long spaceId) {
         // 현재 로그인한 유저
         org.springframework.security.core.Authentication testAuthentication = SecurityContextHolder.getContext().getAuthentication();
@@ -120,6 +125,7 @@ public class FollowController {
     }
 
     @GetMapping("/isFollower/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<?> isFollower(@PathVariable Long spaceId) {
         // 현재 로그인한 유저
         if (SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -140,6 +146,7 @@ public class FollowController {
 
     // 스페이스 주인의 팔로잉 리스트 전달하기
     @GetMapping("/getFollow/following/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<FollowingDTO<List<UserUpdateRequestDto>>> getFollowing(@PathVariable Long spaceId) {
         // 스페이스 주인 유저 정보 가져오기
         UserEntity spaceUser = userService.getUser(spaceId);
@@ -164,6 +171,7 @@ public class FollowController {
     }
 
     @GetMapping("/getFollow/follower/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<FollowingDTO<List<UserUpdateRequestDto>>> getFollowers(@PathVariable Long spaceId) {
         // 스페이스 주인 유저 정보 가져오기
         UserEntity spaceUser = userService.getUser(spaceId);
@@ -188,6 +196,7 @@ public class FollowController {
     }
 
     @GetMapping("/getFollow/followingNumber/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<Integer> getFollowingNumber(@PathVariable Long spaceId) {
         UserEntity spaceUser = userService.getUser(spaceId);
 
@@ -198,6 +207,7 @@ public class FollowController {
     }
 
     @GetMapping("/getFollow/followerNumber/{spaceId}")
+    @CrossOrigin(origins = "https://mumul.site")
     public ResponseEntity<Integer> getFollowerNumber(@PathVariable Long spaceId) {
         UserEntity spaceUser = userService.getUser(spaceId);
 

@@ -49,7 +49,7 @@ public class QuestionEntity {
     @OneToMany(mappedBy = "question",
             //질문 삭제되면 답변 또한 삭제돼야 한다,
             cascade = CascadeType.REMOVE,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     @Builder.Default
     @Column(nullable = false, name="answers")
     private List<AnswerEntity> answers=new ArrayList<>();//종속된 답변 리스트
