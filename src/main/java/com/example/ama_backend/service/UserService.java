@@ -42,7 +42,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
-
+@Transactional
 @Service
 public class UserService {
     private final UserRepository userRepository;

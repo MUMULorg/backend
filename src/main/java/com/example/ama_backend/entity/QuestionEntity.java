@@ -2,6 +2,7 @@ package com.example.ama_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -47,9 +48,9 @@ public class QuestionEntity {
 
     // @OneToMany 어노테이션을 사용하여 AnswerEntity 클래스의 question 프로퍼티와 매핑하겠습니다.
     @OneToMany(mappedBy = "question",
+            fetch = FetchType.LAZY,
             //질문 삭제되면 답변 또한 삭제돼야 한다,
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER)
+            cascade = CascadeType.REMOVE)
     @Builder.Default
     @Column(nullable = false, name="answers")
     private List<AnswerEntity> answers=new ArrayList<>();//종속된 답변 리스트

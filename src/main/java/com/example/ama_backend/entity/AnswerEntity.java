@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,7 +42,7 @@ public class AnswerEntity {
     private Boolean isPublic; //답변 공개 여부
 
     // @ManyToOne 어노테이션을 사용하여 QuestionEntity 클래스의 answers 프로퍼티와 매핑
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "question_id")
     private QuestionEntity question; // QuestionEntity 객체를 참조
 
@@ -49,5 +51,6 @@ public class AnswerEntity {
     public boolean isMyAnswer(final Long userId) {
         return Objects.equals(this.userId, userId);
     }
+
 
 }

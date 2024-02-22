@@ -15,11 +15,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Transactional
 @Slf4j
 @Service
 // 메소드 단위로 트랜잭션을 적용하기 위한 것이다. 메소드 실행 중에 예외가 발생하면
 // 해당 메소드에서 이루어진 모둔 데이터 변경 작업이롤백된다. 이를 통해 데이터 일관성을 유지할 수 있다.
-@Transactional
 public class QAService {
     @Autowired
     private QuestionRepository questionRepository;
