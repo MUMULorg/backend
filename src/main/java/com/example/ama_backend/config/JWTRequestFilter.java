@@ -35,9 +35,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        System.out.println("=======================doFilterInternal===========================");
+       // System.out.println("=======================doFilterInternal===========================");
         String token = resolveToken(request);
-        System.out.println("DoRequestFilter token: " + token);
+       // System.out.println("DoRequestFilter token: " + token);
 
         Authentication authentication;
 
